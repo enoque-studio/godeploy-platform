@@ -9,7 +9,6 @@
 
 
 [![CI](https://github.com/enoquesousa/godeploy-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/enoquesousa/godeploy-platform/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/enoquesousa/godeploy-platform)](https://goreportcard.com/report/github.com/enoquesousa/godeploy-platform)
 [![Go Reference](https://pkg.go.dev/badge/github.com/enoquesousa/godeploy-platform.svg)](https://pkg.go.dev/github.com/enoquesousa/godeploy-platform)
 [![CodeFactor](https://www.codefactor.io/repository/github/enoquesousa/godeploy-platform/badge)](https://www.codefactor.io/repository/github/enoquesousa/godeploy-platform)
 [![License](https://img.shields.io/github/license/enoquesousa/godeploy-platform)](https://github.com/enoquesousa/godeploy-platform/blob/main/LICENSE)
