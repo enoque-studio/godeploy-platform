@@ -8,19 +8,19 @@
   <br>
 
 
-[![CI](https://github.com/esousa97/godeploy-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/esousa97/godeploy-platform/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/esousa97/godeploy-platform)](https://goreportcard.com/report/github.com/esousa97/godeploy-platform)
-[![Go Reference](https://pkg.go.dev/badge/github.com/esousa97/godeploy-platform.svg)](https://pkg.go.dev/github.com/esousa97/godeploy-platform)
-[![CodeFactor](https://www.codefactor.io/repository/github/esousa97/godeploy-platform/badge)](https://www.codefactor.io/repository/github/esousa97/godeploy-platform)
-[![License](https://img.shields.io/github/license/esousa97/godeploy-platform)](https://github.com/esousa97/godeploy-platform/blob/main/LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/esousa97/godeploy-platform)](https://github.com/esousa97/godeploy-platform/blob/main/go.mod)
-[![Last Commit](https://img.shields.io/github/last-commit/esousa97/godeploy-platform)](https://github.com/esousa97/godeploy-platform/commits/main)
+[![CI](https://github.com/enoquesousa/godeploy-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/enoquesousa/godeploy-platform/actions/workflows/ci.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/enoquesousa/godeploy-platform)](https://goreportcard.com/report/github.com/enoquesousa/godeploy-platform)
+[![Go Reference](https://pkg.go.dev/badge/github.com/enoquesousa/godeploy-platform.svg)](https://pkg.go.dev/github.com/enoquesousa/godeploy-platform)
+[![CodeFactor](https://www.codefactor.io/repository/github/enoquesousa/godeploy-platform/badge)](https://www.codefactor.io/repository/github/enoquesousa/godeploy-platform)
+[![License](https://img.shields.io/github/license/enoquesousa/godeploy-platform)](https://github.com/enoquesousa/godeploy-platform/blob/main/LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/enoquesousa/godeploy-platform)](https://github.com/enoquesousa/godeploy-platform/blob/main/go.mod)
+[![Last Commit](https://img.shields.io/github/last-commit/enoquesousa/godeploy-platform)](https://github.com/enoquesousa/godeploy-platform/commits/main)
 
 </div>
 
 ---
 
-**godeploy-platform** is an HTTP daemon (`godeployd`) that receives push webhooks (GitHub or GitLab), clones the repository, detects the runtime (Go, Node, Python, static, or a supplied Dockerfile), generates or reuses a Dockerfile, builds via the Docker Engine API, runs a container with CPU/RAM limits, and updates routes in SQLite for an optional reverse proxy. It also includes a TUI for inspection and a WebSocket log client. The Go module is named `godeploy-platform` (repository root); the badges above assume the canonical repo `github.com/esousa97/godeploy-platform`.
+**godeploy-platform** is an HTTP daemon (`godeployd`) that receives push webhooks (GitHub or GitLab), clones the repository, detects the runtime (Go, Node, Python, static, or a supplied Dockerfile), generates or reuses a Dockerfile, builds via the Docker Engine API, runs a container with CPU/RAM limits, and updates routes in SQLite for an optional reverse proxy. It also includes a TUI for inspection and a WebSocket log client. The Go module is named `godeploy-platform` (repository root); the badges above assume the canonical repo `github.com/enoquesousa/godeploy-platform`.
 
 ## Demo (60-second smoke test)
 
@@ -82,7 +82,7 @@ For an end-to-end deploy (clone → build → run → health check → route), s
 ### From source (recommended)
 
 ```bash
-git clone https://github.com/esousa97/godeploy-platform.git
+git clone https://github.com/enoquesousa/godeploy-platform.git
 cd godeploy-platform
 cp .env.example .env
 ```
@@ -107,7 +107,7 @@ go build -o bin/godeployd ./cmd/godeployd
 When the module is published under a `github.com/...` path aligned with `go.mod`, you can use:
 
 ```bash
-go install github.com/esousa97/godeploy-platform/cmd/godeployd@latest
+go install github.com/enoquesousa/godeploy-platform/cmd/godeployd@latest
 ```
 
 While `go.mod` declares only `module godeploy-platform`, prefer `make build` from a clone.
@@ -534,12 +534,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.
 **Enoque Sousa**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enoque-sousa-bb89aa168/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/esousa97)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/enoquesousa)
 [![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=target&logoColor=white)](https://enoquesousa.vercel.app)
 
 **[⬆ Back to Top](#godeploy-platform)**
 
-Made with ❤️ by [Enoque Sousa](https://github.com/esousa97)
+Made with ❤️ by [Enoque Sousa](https://github.com/enoquesousa)
 
 **Project Status:** Study project
 

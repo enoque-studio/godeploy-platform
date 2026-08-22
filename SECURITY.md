@@ -4,7 +4,7 @@
 
 Please report security issues **responsibly**:
 
-- Prefer **[GitHub Security Advisories](https://github.com/esousa97/godeploy-platform/security/advisories/new)** for this repository (private disclosure to maintainers).
+- Prefer **[GitHub Security Advisories](https://github.com/enoquesousa/godeploy-platform/security/advisories/new)** for this repository (private disclosure to maintainers).
 - If that channel is unavailable, open a **public issue with minimal detail** (no exploit steps, no sensitive data) and ask to be contacted privately; the maintainer will follow up via GitHub.
 
 Do not post working exploits or production credentials in public issues.
