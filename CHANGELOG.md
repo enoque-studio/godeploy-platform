@@ -40,5 +40,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Documented dependency scanning notes and operational mitigations in `SECURITY.md`.
 
-[Unreleased]: https://github.com/esousa97/godeploy-platform/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/esousa97/godeploy-platform/releases/tag/v0.1.0
+[Unreleased]: https://github.com/enoquesousa/godeploy-platform/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/enoquesousa/godeploy-platform/releases/tag/v0.1.0

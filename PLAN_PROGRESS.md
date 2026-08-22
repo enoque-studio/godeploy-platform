@@ -24,7 +24,7 @@ This file records **where work stopped** so you can continue in stages. The full
 - **Stage 7** (2026-05-02): post-`plan_go.md` §5.1 (extra workflows) and §5.3 (CodeFactor badge).
   - **`.github/workflows/security-schedule.yml`**: weekly `govulncheck` (Monday 06:00 UTC) and `workflow_dispatch`; `continue-on-error: true` aligned with the CI `vulncheck` job while dependencies lack a published OSV fix on the module.
   - **`.goreleaser.yaml`** + **`.github/workflows/release.yml`**: publish to GitHub Releases when pushing a `v*` tag; per-OS/architecture packages with all three binaries (`godeployd`, `godeploy-tui`, `godeploy-logtail`), `formats` / `ids` per GoReleaser v2 (no deprecated properties); `goreleaser check` validated locally.
-  - **`README.md`**: [CodeFactor](https://www.codefactor.io) badge for `github.com/esousa97/godeploy-platform` (register the repo on CodeFactor if the badge does not yet show a grade).
+  - **`README.md`**: [CodeFactor](https://www.codefactor.io) badge for `github.com/enoquesousa/godeploy-platform` (register the repo on CodeFactor if the badge does not yet show a grade).
   - **`CONTRIBUTING.md`**: **Releases** section with tag flow and `goreleaser check` / snapshot commands.
   - **Local validation:** `go build ./...`, `go test -short ./...`, `goreleaser check` succeeded on this clone.
 
