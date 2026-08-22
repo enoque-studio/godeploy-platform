@@ -42,10 +42,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Go 1.27 currently deadlocks in modernc.org/sqlite v1.39.1 under the
-        # race-enabled proxy tests. Test the declared toolchain and the newest
-        # compatible release until the SQLite dependency is upgraded.
-        go-version: ["1.25.9", "1.26.x"]
+        # Newer Go toolchains currently deadlock in modernc.org/sqlite v1.39.1
+        # under the race-enabled proxy tests. Keep CI on the version declared
+        # by go.mod until the SQLite dependency is upgraded.
+        go-version: ["1.25.9"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
