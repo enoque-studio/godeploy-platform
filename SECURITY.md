@@ -13,7 +13,7 @@ Do not post working exploits or production credentials in public issues.
 
 - **First acknowledgement**: best effort within **7 days** of a valid report via GitHub Security Advisories.
 - **Status updates**: when a fix is planned or released, or if the report is declined as out of scope.
-- This is a **study / side project**; timelines depend on maintainer availability and are not a commercial SLA.
+- This is an **independently maintained prototype**; timelines depend on maintainer availability and are not a commercial SLA.
 
 ## Supported versions
 
@@ -24,6 +24,8 @@ Security fixes are applied on the **default branch** (`main`) going forward. Tag
 The Go client `github.com/docker/docker` is kept on the **latest version compatible** with this codebase; `govulncheck` may still list findings (GO-2026-4887, GO-2026-4883) with *Fixed in: N/A* in the vulnerability database, because the analysis engine associates the module with Moby/daemon code paths.
 
 This repository uses the package **only as an HTTP client** for the Docker Engine API (images, containers, networks). Vectors described in those advisories target **daemon** components (AuthZ, plugins), not the `godeployd` binary. Still, run `govulncheck ./...` on each release and keep Docker Engine updated on the host.
+
+GitHub Dependabot also reports Docker archive/`docker cp` advisories against the module manifest. This project does not call `CopyToContainer`, `CopyFromContainer`, `ContainerArchive`, or the `/containers/{id}/archive` endpoints. No patched module version is currently published; the alerts remain open for tracking and must be reassessed when Docker publishes one.
 
 Mitigations in `godeployd` and related services:
 
