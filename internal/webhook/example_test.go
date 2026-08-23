@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"godeploy-platform/internal/webhook"
+	"github.com/enoquesousa/godeploy-platform/internal/webhook"
 )
 
 func ExampleParser_Parse_githubPing() {

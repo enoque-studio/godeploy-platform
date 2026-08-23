@@ -15,8 +15,8 @@ import (
 	"github.com/docker/docker/pkg/stdcopy"
 	"github.com/gorilla/websocket"
 
-	"godeploy-platform/internal/middleware"
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/middleware"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 // Stream values used in [LogMessage.Stream].

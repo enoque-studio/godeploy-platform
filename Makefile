@@ -1,4 +1,4 @@
-.PHONY: help fmt vet test test-short test-race test-cover test-cover-check install-hooks tidy build build-daemon build-tui build-logtail clean vulncheck sec lint all validate validate-full generate docker-build run
+.PHONY: help fmt vet test test-short test-race test-cover test-cover-check install-hooks tidy build build-daemon build-proxy build-tui build-logtail clean vulncheck sec lint all validate validate-full generate docker-build run
 
 GO ?= go
 
@@ -6,8 +6,9 @@ BIN_DIR := bin
 DAEMON := $(BIN_DIR)/godeployd
 TUI := $(BIN_DIR)/godeploy-tui
 LOGTAIL := $(BIN_DIR)/godeploy-logtail
+PROXY := $(BIN_DIR)/godeploy-proxy
 COVERAGE_FILE := coverage.txt
-# Minimum total statement coverage for `make test-cover-check` (see PLAN_PROGRESS.md, stage 4).
+# Minimum total statement coverage for `make test-cover-check`.
 COVER_MIN ?= 29
 DOCKER_IMAGE ?= godeployd:local
 
@@ -65,12 +66,17 @@ validate: fmt vet lint test build
 validate-full: fmt vet lint test-short test-cover-check build
 
 ## build: Build all binaries
-build: build-daemon build-tui build-logtail
+build: build-daemon build-proxy build-tui build-logtail
 
 ## build-daemon: Build godeployd
 build-daemon:
 	@mkdir -p $(BIN_DIR)
 	$(GO) build -o $(DAEMON) ./cmd/godeployd
+
+## build-proxy: Build the Host-based reverse proxy
+build-proxy:
+	@mkdir -p $(BIN_DIR)
+	$(GO) build -o $(PROXY) ./cmd/godeploy-proxy
 
 ## build-tui: Build godeploy-tui
 build-tui:

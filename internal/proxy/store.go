@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 // Store persists domain -> target (ip:port) routes in SQLite.

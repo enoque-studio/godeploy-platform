@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
 )
 
 func dockerfileTemplate(rt detector.Runtime) (string, error) {

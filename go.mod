@@ -1,4 +1,4 @@
-module godeploy-platform
+module github.com/enoquesousa/godeploy-platform
 
 go 1.25.9
 

@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"godeploy-platform/internal/middleware"
-	"godeploy-platform/internal/pipeline"
-	"godeploy-platform/internal/webhook"
+	"github.com/enoquesousa/godeploy-platform/internal/middleware"
+	"github.com/enoquesousa/godeploy-platform/internal/pipeline"
+	"github.com/enoquesousa/godeploy-platform/internal/webhook"
 )
 
 func TestGetenv(t *testing.T) {

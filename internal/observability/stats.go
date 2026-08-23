@@ -12,7 +12,7 @@ import (
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 // ContainerStat is one row of Docker usage telemetry returned by [Collector.Collect].

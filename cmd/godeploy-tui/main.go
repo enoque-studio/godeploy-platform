@@ -16,8 +16,8 @@ import (
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/platform/iox"
-	"godeploy-platform/internal/platform/sqlpool"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/sqlpool"
 
 	_ "modernc.org/sqlite"
 )

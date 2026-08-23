@@ -1,6 +1,6 @@
 name: security-scheduled
 
-# Weekly vulnerability scan (plan_go.md ETAPA 5 — optional scheduled audit).
+# Weekly vulnerability scan for newly disclosed Go dependency issues.
 on:
   schedule:
     - cron: "0 6 * * 1"

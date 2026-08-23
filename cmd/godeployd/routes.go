@@ -6,8 +6,8 @@ import (
 
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/middleware"
-	"godeploy-platform/internal/observability"
+	"github.com/enoquesousa/godeploy-platform/internal/middleware"
+	"github.com/enoquesousa/godeploy-platform/internal/observability"
 )
 
 // routeDeps configures HTTP routes that depend on optional services.
