@@ -6,10 +6,10 @@
 - `deployments/docker-compose.yml` shows a mounted Docker socket and volume for `GODEPLOY_DB`. Tune ports, networks, and **never** expose `GODEPLOY_WEBHOOK_SECRET` in logs or public images.
 - Set `GODEPLOY_WEBHOOK_SECRET` in production and keep webhook rate limits (`GODEPLOY_WEBHOOK_RPS` / `GODEPLOY_WEBHOOK_BURST`) appropriate for expected traffic.
 
-## App reverse proxy (`internal/proxy`)
+## App reverse proxy (`godeploy-proxy`)
 
-- Separate binary (integrate in your startup): typically listens on `:80` or `:8080` and reads routes from the **same** SQLite the daemon updates after deploy.
-- After each `UpsertRoute`, call `NotifyReload` on `*proxy.Proxy` if you want the route propagated without waiting for the poll (this repository’s pipeline follows that pattern when wired to the proxy).
+- Run the bundled `godeploy-proxy` binary on the deployment host. It listens on `GODEPLOY_PROXY_ADDR` (default `:8080`) and reads routes from the **same** SQLite database the daemon updates after deploy.
+- Route changes are detected through the shared version counter and become active on the next polling interval (one second by default).
 
 ## Quick checklist
 

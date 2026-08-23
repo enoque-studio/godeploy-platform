@@ -19,7 +19,7 @@ import (
 	"github.com/docker/docker/pkg/stdcopy"
 	"github.com/docker/go-connections/nat"
 
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 const (

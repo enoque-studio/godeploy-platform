@@ -9,13 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Runnable `godeploy-proxy` command, included in local builds and release archives.
+- Explicit product-maturity and known-limitations documentation for production evaluation.
 - Stage 4 (quality): tests in `internal/pipeline`, `internal/platform/iox`, `internal/platform/sqlpool`; `ExampleParser_Parse_githubPing` in `internal/webhook`; stable `test-cover-check` coverage floor (≥29% with `go test -short`).
 
 ### Changed
 
+- Canonical Go module path `github.com/enoquesousa/godeploy-platform`, enabling direct `go install` commands.
+- Removed internal planning notes and stray local coverage/error artifacts from the public source tree.
 - A+ documentation: README (Makefile table aligned with `fmt`/goimports, `validate-full`, `test-cover-check`, `docs/` index), CONTRIBUTING (Conventional Commits), SECURITY (`Cache-Control` header), new `docs/deployment.md` and expanded `docs/architecture.md` / `docs/api.md` / `docs/setup.md`.
 - `internal/proxy`: reuse one `http.Transport` per proxy instance; `Makefile` `test-cover-check` uses a safer flag order for shells.
-- `.golangci.yml`: linter set aligned with the plan (with exclusions documented in `PLAN_PROGRESS.md`).
+- `.golangci.yml`: linter set aligned with the documented local and CI validation policy.
 - Project copy and operator-facing strings internationalised to English (`README`, `docs/`, errors, logs).
 
 ### Fixed

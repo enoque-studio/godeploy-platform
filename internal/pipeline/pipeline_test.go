@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
 
 	_ "modernc.org/sqlite"
 )

@@ -8,7 +8,7 @@ import (
 
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/integrationtest"
+	"github.com/enoquesousa/godeploy-platform/internal/integrationtest"
 )
 
 func TestStatsHandler(t *testing.T) {

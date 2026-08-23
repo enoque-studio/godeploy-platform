@@ -16,11 +16,11 @@ import (
 
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/middleware"
-	"godeploy-platform/internal/pipeline"
-	"godeploy-platform/internal/platform/iox"
-	"godeploy-platform/internal/platform/sqlpool"
-	"godeploy-platform/internal/webhook"
+	"github.com/enoquesousa/godeploy-platform/internal/middleware"
+	"github.com/enoquesousa/godeploy-platform/internal/pipeline"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/sqlpool"
+	"github.com/enoquesousa/godeploy-platform/internal/webhook"
 
 	_ "modernc.org/sqlite"
 )

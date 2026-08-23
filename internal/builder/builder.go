@@ -20,8 +20,8 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/jsonmessage"
 
-	"godeploy-platform/internal/detector"
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 // Builder wraps a Docker API client and performs image builds for godeploy.

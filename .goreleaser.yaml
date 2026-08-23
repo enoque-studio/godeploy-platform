@@ -31,6 +31,18 @@ builds:
     goarch:
       - amd64
       - arm64
+  - id: godeploy-proxy
+    main: ./cmd/godeploy-proxy
+    binary: godeploy-proxy
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
   - id: godeploy-logtail
     main: ./cmd/godeploy-logtail
     binary: godeploy-logtail
@@ -49,6 +61,7 @@ archives:
     ids:
       - godeployd
       - godeploy-tui
+      - godeploy-proxy
       - godeploy-logtail
     formats:
       - tar.gz

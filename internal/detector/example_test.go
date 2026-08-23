@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
 )
 
 func ExampleDetect() {

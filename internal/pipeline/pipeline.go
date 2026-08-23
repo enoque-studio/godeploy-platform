@@ -21,10 +21,10 @@ import (
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
 
-	"godeploy-platform/internal/builder"
-	"godeploy-platform/internal/detector"
-	"godeploy-platform/internal/proxy"
-	"godeploy-platform/internal/scheduler"
+	"github.com/enoquesousa/godeploy-platform/internal/builder"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/proxy"
+	"github.com/enoquesousa/godeploy-platform/internal/scheduler"
 )
 
 // Config wires database, Docker, network defaults, health probing, and logging for [New].

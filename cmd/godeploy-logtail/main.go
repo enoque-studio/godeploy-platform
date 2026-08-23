@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"godeploy-platform/internal/platform/iox"
+	"github.com/enoquesousa/godeploy-platform/internal/platform/iox"
 )
 
 func main() {

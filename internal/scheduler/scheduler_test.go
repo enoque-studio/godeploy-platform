@@ -8,7 +8,7 @@ import (
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/integrationtest"
+	"github.com/enoquesousa/godeploy-platform/internal/integrationtest"
 )
 
 func TestAppValidate(t *testing.T) {

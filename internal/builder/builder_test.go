@@ -13,8 +13,8 @@ import (
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
 
-	"godeploy-platform/internal/detector"
-	"godeploy-platform/internal/integrationtest"
+	"github.com/enoquesousa/godeploy-platform/internal/detector"
+	"github.com/enoquesousa/godeploy-platform/internal/integrationtest"
 )
 
 func TestResolveDockerfile(t *testing.T) {

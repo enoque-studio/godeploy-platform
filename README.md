@@ -3,7 +3,7 @@
 
 <p>Mini PaaS in Go: detects app type, builds a Docker image, and deploys with domain-based proxy routing and Git webhooks.</p>
 
-  <img src="assets/github-go.png" alt="gochangelog-gen Banner" width="600px">
+  <img src="assets/github-go.png" alt="godeploy-platform architecture banner" width="600px">
 
   <br>
 
@@ -19,7 +19,9 @@
 
 ---
 
-**godeploy-platform** is an HTTP daemon (`godeployd`) that receives push webhooks (GitHub or GitLab), clones the repository, detects the runtime (Go, Node, Python, static, or a supplied Dockerfile), generates or reuses a Dockerfile, builds via the Docker Engine API, runs a container with CPU/RAM limits, and updates routes in SQLite for an optional reverse proxy. It also includes a TUI for inspection and a WebSocket log client. The Go module is named `godeploy-platform` (repository root); the badges above assume the canonical repo `github.com/enoquesousa/godeploy-platform`.
+**godeploy-platform** is an HTTP daemon (`godeployd`) that receives push webhooks (GitHub or GitLab), clones the repository, detects the runtime (Go, Node, Python, static, or a supplied Dockerfile), generates or reuses a Dockerfile, builds via the Docker Engine API, runs a container with CPU/RAM limits, and updates routes in SQLite for the bundled reverse proxy. It also includes a TUI for inspection and a WebSocket log client. The canonical Go module is `github.com/enoquesousa/godeploy-platform`.
+
+> **Maturity:** active single-host prototype. The deployment pipeline, health-based route switch and rollback are implemented and tested, but the project is not yet a multi-tenant or highly available control plane. See [Known limitations](#known-limitations) before exposing it to untrusted networks.
 
 ## Demo (60-second smoke test)
 
@@ -103,13 +105,12 @@ go build -o bin/godeployd ./cmd/godeployd
 
 ### As a binary with `go install`
 
-When the module is published under a `github.com/...` path aligned with `go.mod`, you can use:
+Install the daemon, reverse proxy, TUI, or log client directly from the canonical module:
 
 ```bash
 go install github.com/enoquesousa/godeploy-platform/cmd/godeployd@latest
+go install github.com/enoquesousa/godeploy-platform/cmd/godeploy-proxy@latest
 ```
-
-While `go.mod` declares only `module godeploy-platform`, prefer `make build` from a clone.
 
 ### Docker Compose
 
@@ -342,45 +343,10 @@ err="new container \"broken-app-...\" did not reach running:
 
 ### Step 6 — reverse proxy by domain
 
-`internal/proxy` is a library, not a binary. The quickest local test is a short wrapper sharing the same `GODEPLOY_DB` godeployd updated:
+Start the bundled reverse proxy against the same SQLite database updated by `godeployd`:
 
 ```bash
-mkdir -p cmd/godeploy-proxy-dev
-cat > cmd/godeploy-proxy-dev/main.go <<'GO'
-package main
-
-import (
-	"context"
-	"database/sql"
-	"log"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
-
-	_ "modernc.org/sqlite"
-	"godeploy-platform/internal/proxy"
-)
-
-func main() {
-	db, err := sql.Open("sqlite", os.Getenv("GODEPLOY_DB"))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
-	p, err := proxy.New(proxy.Config{Addr: ":8090", DB: db, PollInterval: time.Second})
-	if err != nil {
-		log.Fatal(err)
-	}
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
-	log.Println("proxy on :8090")
-	if err := p.Run(ctx); err != nil {
-		log.Fatal(err)
-	}
-}
-GO
-GODEPLOY_DB=$(pwd)/godeploy.db go run ./cmd/godeploy-proxy-dev
+GODEPLOY_DB=$(pwd)/godeploy.db GODEPLOY_PROXY_ADDR=:8090 ./bin/godeploy-proxy
 ```
 
 In another terminal, hit it with the **Host header** (the proxy routes by domain):
@@ -426,7 +392,7 @@ Get-Process -Name godeployd -ErrorAction SilentlyContinue | Stop-Process -Force
 | `test-cover` | Coverage and `coverage.html` |
 | `test-cover-check` | `-short` plus coverage floor (`COVER_MIN`, default 29%) |
 | `tidy` | `go mod tidy` |
-| `build` | Build all three binaries into `bin/` |
+| `build` | Build all four binaries into `bin/` |
 | `build-daemon` | `godeployd` only |
 | `build-tui` | `godeploy-tui` only |
 | `build-logtail` | `godeploy-logtail` only |
@@ -445,6 +411,7 @@ Get-Process -Name godeployd -ErrorAction SilentlyContinue | Stop-Process -Force
 ## Architecture
 
 - `cmd/godeployd` — HTTP server, `internal/pipeline` wiring, webhooks, observability.
+- `cmd/godeploy-proxy` — runnable Host-based reverse proxy over the shared SQLite route table.
 - `cmd/godeploy-tui` — terminal UI over Docker and SQLite.
 - `cmd/godeploy-logtail` — WebSocket log client.
 - `internal/pipeline` — orchestration: clone → build → deploy → health → route.
@@ -476,12 +443,21 @@ HTTP summary for `godeployd`:
 
 Details and examples: [docs/api.md](docs/api.md). Package docs for `internal/` via `go doc` in a local clone (not a stable public API).
 
+## Known limitations
+
+- Single-host control plane backed by SQLite; no clustering or leader election.
+- No tenant model, user authentication, authorization, quotas, or per-application secrets management.
+- Docker socket access is highly privileged and must remain restricted to trusted operators.
+- TLS termination and public DNS automation are intentionally delegated to external infrastructure.
+- Rollback protects the route switch during deployment; disaster recovery and automated SQLite backups remain operator responsibilities.
+
 ## Configuration
 
 | Variable | Type | Default | Description |
 |----------|------|---------|-------------|
 | `GODEPLOY_ADDR` | string | `:8081` | HTTP listen address |
 | `GODEPLOY_DB` | path | `godeploy.db` | SQLite file |
+| `GODEPLOY_PROXY_ADDR` | string | `:8080` | Host-based reverse proxy listen address |
 | `GODEPLOY_NETWORK` | string | `godeploy` | Docker bridge network for apps |
 | `GODEPLOY_IMAGE_PREFIX` | string | `godeploy` | Image name prefix |
 | `GODEPLOY_HEALTH_PATH` | string | `/` | HTTP health-check path in the pipeline |
@@ -534,12 +510,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enoque-sousa-bb89aa168/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/enoquesousa)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=target&logoColor=white)](https://enoquesousa.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=target&logoColor=white)](https://enoquesousa.com/en)
 
 **[⬆ Back to Top](#godeploy-platform)**
 
 Made with ❤️ by [Enoque Sousa](https://github.com/enoquesousa)
 
-**Project Status:** Study project
+**Project Status:** Active single-host prototype
 
 </div>
